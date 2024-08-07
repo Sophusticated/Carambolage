@@ -8,21 +8,13 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
+    public AudioClip Music;
     public AudioClip dingSound;
     public AudioClip trackSwitch;
     public static float volume;
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         if (PlayerPrefs.HasKey("volumeChangedBool"))
         {
             ChangeMusicVolume();

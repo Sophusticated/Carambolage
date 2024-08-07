@@ -10,12 +10,13 @@ public class TrainBehaviourlvl1 : MonoBehaviour
     public static float speedConst;
     private bool isCurrentlyColliding = false;
     public GameObject colliderObj;
-    private bool goingUp = false;
-    private bool goingRight = false;
-    private bool goingDown = false;
-    private bool goingLeft = true;
+    private bool goingUp;
+    private bool goingRight;
+    private bool goingDown;
+    private bool goingLeft;
     private bool hasCollided = false;
     
+
     public static float speedVar;
 
     AudioManager audioManager;
@@ -51,12 +52,24 @@ public class TrainBehaviourlvl1 : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         isCurrentlyColliding = false;
-        goingUp = false;
-        goingRight = false;
-        goingDown = false;
-        goingLeft = true;
+
         hasCollided = false;
-        speedConst = 1f;
+        if (General.levelNo == 1)
+        {
+            speedConst = 0.8f;
+            goingUp = false;
+            goingRight = true;
+            goingDown = false;
+            goingLeft = false;
+        }
+        if (General.levelNo == 2)
+        {
+            speedConst = 1f;
+            goingUp = false;
+            goingRight = false;
+            goingDown = false;
+            goingLeft = true;
+        }
         speedVar = speedConst;
     }
 
@@ -74,21 +87,21 @@ public class TrainBehaviourlvl1 : MonoBehaviour
             hasCollided = true;
             }
     
-        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turnupright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turnrightleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1))){
+        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turnrightsolo") || (colliderObj.name == "Turnupright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turnrightleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1))){
             goingRight = true;
             goingUp = false;
             goingDown = false;
             goingLeft = false;
             hasCollided = true;
         }
-        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turnupdown" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1) || (colliderObj.name == "Turndownleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1))){
+        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turndownsolo") || (colliderObj.name == "Turnupdown" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownright" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1) || (colliderObj.name == "Turndownleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 1))){
             goingRight = false;
             goingUp = false;
             goingDown = true;
             goingLeft = false;
             hasCollided = true;
         }
-        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turnupleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turnrightleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2))){
+        else if (!hasCollided && isCurrentlyColliding && ((colliderObj.name == "Turnleftsolo") || (colliderObj.name == "Turnupleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turndownleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2) || (colliderObj.name == "Turnrightleft" && colliderObj.transform.parent.gameObject.GetComponent<Tilerotator>().currentTile == 2))){
             goingRight = false;
             goingUp = false;
             goingDown = false;

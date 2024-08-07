@@ -3,65 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class General : MonoBehaviour
 {
-    public static GameObject Redhouse;
-    public static GameObject newhouse;
-    public static GameObject Houses;
-    public static GameObject gameOverCard;
+    public GameObject Houses;
+    public GameObject gameOverCard;
 
-    public static GameObject BaseCar;
-    public static GameObject pauseButton;
+    public GameObject BaseCar;
+    public GameObject pauseButton;
+    public static int levelNo;
     public static List<GameObject> cars;
     public static List<string> carNames;
     public static GameObject carParent;
     public static Sprite[] spriteArray;
+    public static Sprite[] tutorialSpriteArray;
     public static bool gameOver = false;
     public static System.Random rnd;
     public static int totalTrains;
     public static int startTrains;
     public static int arrivedTrains;
     public static int Score = 0;
-    public static List<GameObject> houseList;
+    public List<GameObject> houseList;
     public static List<Vector2> housePositions;
 
     void Awake()
     {
-        houseList = new List<GameObject>(13);
-        housePositions = new List<Vector2>(13);
+        levelNo = SceneManager.GetActiveScene().buildIndex;
+        housePositions = new List<Vector2>(houseList.Count);
         Houses = GameObject.Find("Houses");
-        pauseButton = GameObject.Find("pauseButton");
-        for (int i = 0; i < 13; i++)
+        for (int i = 0; i < houseList.Count; i++)
         {
-            houseList.Add(Houses.transform.GetChild(i).gameObject);
             housePositions.Add(Houses.transform.GetChild(i).transform.position);
         }
         resetAll();
         CreateHouses();
-        InvokeRepeating("CreateCarsWrapper", 0f, 1.4f);
+        if (levelNo == 1)
+        {
+            InvokeRepeating("CreateCarsWrapper", 0f, 3f);
+        }
+        if (levelNo == 2)
+        {
+            InvokeRepeating("CreateCarsWrapper", 0f, 1.4f);
+        }
     }
 
-    public static void resetAll()
+    public void resetAll()
     {
+        if (levelNo == 1)
+        {
+            totalTrains = 10;
+        }
+        else if (levelNo == 2)
+        {
+            totalTrains = 90;
+        }
         arrivedTrains = 0;
-        totalTrains = 90;
         startTrains = totalTrains;
         Score = 0;
-        Redhouse = GameObject.Find("Red");
+
 
         carParent = GameObject.Find("Trains");
-        BaseCar = GameObject.Find("/Trains/Base");
         spriteArray = Resources.LoadAll<Sprite>("Cars");
+        tutorialSpriteArray = Resources.LoadAll<Sprite>("Cars/TutorialCars");
         cars = new List<GameObject>();
         rnd = new System.Random();
         
+        
         gameOver = false;
-        gameOverCard = GameObject.Find("gameOverCard");
-        if (gameOverCard == null)
-        {
-            Debug.LogWarning("gameovercard is null");
-        }
+        pauseButton.SetActive(true);
         gameOverCard.GetComponent<Canvas>().sortingOrder = -10;
         gameOverCard.transform.GetChild(0).gameObject.SetActive(false);
         gameOverCard.transform.GetChild(1).gameObject.SetActive(false);
@@ -107,20 +117,41 @@ public class General : MonoBehaviour
 
     public void CreateCars(int carsNum)
     {
-        for (int i = 0; i < carsNum; i++)
+        if (levelNo == 1)
         {
-            
-            int colourNumber = rnd.Next(0, 13);
-            GameObject carClone = Instantiate(BaseCar, new Vector2(25 + (i*3), -3.5f), BaseCar.transform.rotation);
-            carClone.name = spriteArray[colourNumber].name;
+            //Tutorial
+            for (int i = 0; i < carsNum; i++)
+            {
+                int colourNumber = rnd.Next(0, 6);
+                GameObject carClone = Instantiate(BaseCar, new Vector2(-5f, -13.5f), BaseCar.transform.rotation);
+                carClone.name = tutorialSpriteArray[colourNumber].name;
+                carClone.GetComponent<SpriteRenderer>().sprite = tutorialSpriteArray[colourNumber];
 
-            carClone.transform.parent = carParent.transform;
-            cars.Add(carClone);
+                carClone.transform.parent = carParent.transform;
+                cars.Add(carClone);
 
-            carClone.GetComponent<SpriteRenderer>().sprite = spriteArray[colourNumber];
+                totalTrains--;
 
-            totalTrains--;
-            
+            }
+        }
+        else if (levelNo == 2)
+        {
+            //Challenge
+            for (int i = 0; i < carsNum; i++)
+            {
+
+                int colourNumber = rnd.Next(0, 14);
+                GameObject carClone = Instantiate(BaseCar, new Vector2(25, -3.5f), BaseCar.transform.rotation);
+                carClone.name = spriteArray[colourNumber].name;
+                carClone.GetComponent<SpriteRenderer>().sprite = spriteArray[colourNumber];
+
+                carClone.transform.parent = carParent.transform;
+                cars.Add(carClone);
+
+                totalTrains--;
+
+            }
+
         }
     }
 

@@ -19,20 +19,20 @@ public class MainMenu : MonoBehaviour
     public void PlayGame(int levelNo){
         SceneManager.LoadScene(levelNo);
     }
-    public void standardButtonFunc(){
-        PlayGame(1);
-    }
-    public void endlessButtonFunc(){
+    public void ChallengeButtonFunc(){
         PlayGame(2);
     }
-    public void restartButtonFunc(){
-        PlayGame(1);
-        General.resetAll();
+    public void EndlessButtonFunc(){
+        PlayGame(3);
     }
-    public void mainMenuButtonFunc(){
+    public void TutorialButtonFunc()
+    {
+        PlayGame(1);
+    }
+    public void MainMenuButtonFunc(){
         SceneManager.LoadScene(0);
     }
-    public void changeVolume()
+    public void ChangeVolume()
     {
         PlayerPrefs.SetFloat("volume", volumeSlider.value);
         PlayerPrefs.SetInt("volumeChangedBool", 1);

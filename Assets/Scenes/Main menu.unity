@@ -332,7 +332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000020981, y: -242}
+  m_AnchoredPosition: {x: 0, y: -204}
   m_SizeDelta: {x: 536.8903, y: 186.579}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87502830
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87502828}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -489,8 +489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 173.1482, y: 57.7161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201122548
 MonoBehaviour:
@@ -539,8 +539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -769,7 +769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: -243}
+  m_AnchoredPosition: {x: -865, y: 386.64}
   m_SizeDelta: {x: 376.2895, y: 175.9209}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &509879046
@@ -1292,8 +1292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000020968, y: 179}
-  m_SizeDelta: {x: 335.4888, y: 141.6382}
+  m_AnchoredPosition: {x: 0, y: 290}
+  m_SizeDelta: {x: 387.4334, y: 161.8388}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921333044
 MonoBehaviour:
@@ -1563,7 +1563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1218747017}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: endlessButtonFunc
+        m_MethodName: EndlessButtonFunc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1773,7 +1773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1218747017}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: standardButtonFunc
+        m_MethodName: ChallengeButtonFunc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1858,7 +1858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -29}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1218747017
@@ -2046,8 +2046,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -570, y: 346}
-  m_SizeDelta: {x: 260.46, y: 102.13}
+  m_AnchoredPosition: {x: -862, y: 389}
+  m_SizeDelta: {x: 419.1792, y: 151.1886}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359425104
 MonoBehaviour:
@@ -2303,7 +2303,7 @@ GameObject:
   - component: {fileID: 1413206614}
   - component: {fileID: 1413206613}
   m_Layer: 5
-  m_Name: 2 minute Button
+  m_Name: Tutorial Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2337,7 +2337,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413206611}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -2376,7 +2376,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1218747017}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: twoMinuteButtonFunc
+        m_MethodName: TutorialButtonFunc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2517,7 +2517,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1218747017}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: changeVolume
+        m_MethodName: ChangeVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2564,7 +2564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.4149, y: -19}
+  m_AnchoredPosition: {x: 0, y: 56}
   m_SizeDelta: {x: 509.4371, y: 183.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1544560832

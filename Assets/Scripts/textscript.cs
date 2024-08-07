@@ -15,7 +15,7 @@ public class textscript : MonoBehaviour
  
     void Update()
     {
-        textObject.SetText("Current score:" + General.Score + " / " + General.arrivedTrains);
+        textObject.SetText(General.Score + " / " + General.arrivedTrains);
         if (General.gameOver)
         {
             textObject.SetText("");

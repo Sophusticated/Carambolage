@@ -34,23 +34,19 @@ public class Tilerotator : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        audioManager.PlaySFX(audioManager.trackSwitch);
+        var switchPos = transform.position;
+        var cellPos = _tilemap.WorldToCell(switchPos);
+        if (currentTile == 1)
         {
-            audioManager.PlaySFX(audioManager.trackSwitch);
-            var switchPos = transform.position;
-            var cellPos = _tilemap.WorldToCell(switchPos);
-            if (currentTile == 1)
-            {
-                _tilemap.SetTile(cellPos, _tile2);
-                currentTile = 2;
-            }
-            else
-            {
-                _tilemap.SetTile(cellPos, _tile1);
-                currentTile = 1;
-            }
+            _tilemap.SetTile(cellPos, _tile2);
+            currentTile = 2;
         }
-
-        
+        else
+        {
+            _tilemap.SetTile(cellPos, _tile1);
+            currentTile = 1;
+        }
+               
     }
 }
