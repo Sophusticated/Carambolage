@@ -21,4 +21,5 @@ public class textscript : MonoBehaviour
             textObject.SetText("");
         }
     }
+
 }

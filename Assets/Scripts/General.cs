@@ -26,6 +26,7 @@ public class General : MonoBehaviour
     public static int Score = 0;
     public List<GameObject> houseList;
     public static List<Vector2> housePositions;
+    private bool isHighScore;
 
     void Awake()
     {
@@ -37,15 +38,7 @@ public class General : MonoBehaviour
             housePositions.Add(Houses.transform.GetChild(i).transform.position);
         }
         resetAll();
-        CreateHouses();
-        if (levelNo == 1)
-        {
-            InvokeRepeating("CreateCarsWrapper", 0f, 3f);
-        }
-        if (levelNo == 2)
-        {
-            InvokeRepeating("CreateCarsWrapper", 0f, 1.4f);
-        }
+
     }
 
     public void resetAll()
@@ -61,7 +54,7 @@ public class General : MonoBehaviour
         arrivedTrains = 0;
         startTrains = totalTrains;
         Score = 0;
-
+        isHighScore = false;
 
         carParent = GameObject.Find("Trains");
         spriteArray = Resources.LoadAll<Sprite>("Cars");
@@ -77,6 +70,16 @@ public class General : MonoBehaviour
         gameOverCard.transform.GetChild(1).gameObject.SetActive(false);
         gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().sortingOrder = 10;
         gameOverCard.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        CreateHouses();
+        if (levelNo == 1)
+        {
+            InvokeRepeating("CreateCarsWrapper", 0f, 3f);
+        }
+        if (levelNo == 2)
+        {
+            InvokeRepeating("CreateCarsWrapper", 0f, 1.4f);
+        }
     }
 
     void CreateCarsWrapper()
@@ -98,15 +101,46 @@ public class General : MonoBehaviour
         if (gameOver)
         {
             pauseButton.SetActive(false);
-            if (Score > PlayerPrefs.GetInt("Highscore"))
+            if (levelNo == 1)
             {
-                PlayerPrefs.SetInt("Highscore", Score);
-                gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Highscore!!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("Highscore"));
+                if (Score > PlayerPrefs.GetInt("tutorialHighscore"))
+                {
+                    isHighScore = true;
+                    PlayerPrefs.SetInt("tutorialHighscore", Score);
+                }
             }
-            else
+            if (levelNo == 2)
             {
-                gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Game Over!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("Highscore"));
+                if (Score > PlayerPrefs.GetInt("Highscore"))
+                {
+                    isHighScore = true;
+                    PlayerPrefs.SetInt("Highscore", Score);
+                }
             }
+
+            if(levelNo == 1)
+            {
+                if (isHighScore)
+                {
+                    gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Highscore!!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("tutorialHighscore"));
+                }
+                else
+                {
+                    gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Game Over!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("tutorialHighscore"));
+                }
+            }
+            if (levelNo == 2)
+            {
+                if (isHighScore)
+                {
+                    gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Highscore!!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("Highscore"));
+                }
+                else
+                {
+                    gameOverCard.transform.GetChild(2).gameObject.GetComponent<TextMeshPro>().text = ("Game Over!" + System.Environment.NewLine + "   " + Score + " points!" + System.Environment.NewLine + "High Score: " + PlayerPrefs.GetInt("Highscore"));
+                }
+            }
+
 
             gameOverCard.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().enabled = true;
             gameOverCard.GetComponent<Canvas>().sortingOrder = 10;
